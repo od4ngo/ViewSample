@@ -1,0 +1,171 @@
+//
+//  TableView.swift
+//  ViewSample
+//
+//  Created by hideta on 2018/09/22.
+//  Copyright © 2018 hideta. All rights reserved.
+//
+
+import UIKit
+
+class TableView: UIViewController {
+    
+    var contents: CustomArea!
+    var tableView: UITableView!
+    
+    let tableTitle = "Table Title"
+    let dataList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "TableView"
+        self.viewRespectsSystemMinimumLayoutMargins = false
+        
+        self.view.backgroundColor = UIColor.white
+        
+        contents = CustomArea(frame: CGRect())
+        contents.title = "Custom Area here"
+        //contents.backgroundColor = UIColor.cyan   // this doesnt work
+        self.view.addSubview(contents)
+        
+        tableView = UITableView(frame: CGRect())
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CustomTableCell.self, forCellReuseIdentifier: "customCell")
+        tableView.tableFooterView = UIView(frame: CGRect())
+        self.view.addSubview(tableView)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
+        let navigationBarHeight = navigationController?.toolbar.frame.size.height
+        
+        contents.center.x = self.view.center.x
+        contents.frame.origin.y = statusBarHeight + navigationBarHeight!
+        // width 指定してないけど frame いっぱいに広がる
+        
+        let customAreaHeight = contents.bounds.size.height
+        
+        tableView.frame.origin.x = 0
+        tableView.frame.origin.y = statusBarHeight + navigationBarHeight! + customAreaHeight
+        tableView.frame.size.width = view.frame.width
+        tableView.frame.size.height = view.frame.height -
+                                (statusBarHeight + navigationBarHeight! + customAreaHeight)
+        
+        /*
+        tableView.preservesSuperviewLayoutMargins = false
+        tableView.cellLayoutMarginsFollowReadableWidth = false  // this doesnt work
+        /*
+        for cell in tableView.visibleCells {
+            cell.indentationWidth = CGFloat(0)  // this doesnt work
+        }
+        */
+        //tableView.alignmentRectInsets // get only
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0) // doesnt work
+        tableView.separatorInset = UIEdgeInsets.zero    // this works at title
+        //tableView.separatorColor = UIColor.clear      // make line clear
+        
+        tableView.layoutMargins = UIEdgeInsets.zero     // ???
+        tableView.directionalLayoutMargins = NSDirectionalEdgeInsets.zero
+        */
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+}
+
+extension TableView: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return tableTitle
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataList.count
+    }
+    /* either in DataSource and in Delegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+    */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //let cell = CustomTableCell(style: .default, reuseIdentifier: "Cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customCell") as! CustomTableCell
+        
+        cell.customImage = UIImage(named: "tokyo")
+        cell.title = "Item " + dataList[indexPath.row]
+        cell.subtitle = "Subtitle " + dataList[indexPath.row]
+        
+        /*
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "Cell")
+        
+        // Predefined Content
+        cell.textLabel?.text = "Item " + dataList[indexPath.row]
+        cell.detailTextLabel?.text = "Subtitle " + dataList[indexPath.row]
+        //cell.imageView?.contentMode = UIViewContentMode.scaleAspectFill   // apper margin
+        cell.imageView?.image = UIImage(named: "tokyo")
+        
+        //cell.editingAccessoryType = UITableViewCellAccessoryType.checkmark
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
+        //cell.selectionStyle = .gray
+        
+        cell.separatorInset = UIEdgeInsets.zero // separator line connected
+        */
+        
+        /*
+        cell.preservesSuperviewLayoutMargins = false
+        cell.contentView.preservesSuperviewLayoutMargins = false
+        
+        //cell.backgroundColor = UIColor.cyan
+
+        cell.indentationLevel = 0   // this doesnt work
+        cell.indentationWidth = 0   // this doesnt work
+
+        cell.layoutMargins = UIEdgeInsets.zero
+        cell.contentView.layoutMargins = UIEdgeInsets.zero
+        cell.imageView?.layoutMargins = UIEdgeInsets.zero
+        cell.directionalLayoutMargins = NSDirectionalEdgeInsets.zero
+        cell.contentView.directionalLayoutMargins = NSDirectionalEdgeInsets.zero
+        cell.imageView?.directionalLayoutMargins = NSDirectionalEdgeInsets.zero
+        //cell.imageView?.alignmentRect(forFrame: CGRect(x: 0, y: 0, width: UITableViewAutomaticDimension, height: UITableViewAutomaticDimension)) // doesnt work
+        
+        //cell.leadingAnchor.constraint(equalTo: tableView.leadingAnchor) // doesnt work
+        */
+        
+        return cell
+    }
+    
+}
+
+extension TableView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+    /*
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+
+}
