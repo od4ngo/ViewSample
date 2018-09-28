@@ -13,7 +13,7 @@ class CollectionView: UIViewController {
     var contents: CustomArea!
     var collectionView: UICollectionView!
     
-    let dataList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"] // class let was NG
+    let dataList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,6 @@ class CollectionView: UIViewController {
 
         contents.center.x = self.view.center.x
         contents.frame.origin.y = statusBarHeight + navigationBarHeight!
-        //contents.frame.size.width = view.frame.size.width // using auto layout?
         
         let customAreaHeight = contents.frame.size.height
         
@@ -79,26 +78,7 @@ extension CollectionView: UICollectionViewDataSource {
         
         cell.image = UIImage(named: "kyoto")
         cell.title = "Item " + dataList[indexPath.row]
-        
-        /*
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        
-        //cell.backgroundColor = UIColor.yellow
-        
-        let imageView = UIImageView(frame: CGRect.zero)
-        imageView.frame.size.width = cell.contentView.frame.width
-        imageView.frame.size.height = cell.contentView.frame.height - 24
-        imageView.image = UIImage(named: "tokyo")
-        cell.contentView.addSubview(imageView)
-        
-        let label = UILabel(frame: CGRect(x: 0, y: cell.contentView.frame.height - 24, width: cell.contentView.frame.width, height: 24))
-        label.text = "Item " + dataList[indexPath.row]
-        label.textAlignment = NSTextAlignment.center
-        label.layoutMargins = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
-        label.backgroundColor = UIColor.cyan
-        cell.contentView.addSubview(label)
-        */
-        
+                
         return cell
     }
 

@@ -17,15 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        // [UITableViewController loadView] instantiated view controller from storyboard "Main",
-        // but didn't get a UITableView. > add tableView at AppDelegate
-        
         let viewController: RootViewController = RootViewController()
         navigationController = UINavigationController(rootViewController: viewController)
         
-        //self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = navigationController
-        //self.window?.makeKeyAndVisible()
         
         return true
     }

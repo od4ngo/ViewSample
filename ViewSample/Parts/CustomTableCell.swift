@@ -12,10 +12,10 @@ class CustomTableCell: UITableViewCell {
     
     // MARK: Property
     
-    var customImageView: UIImageView = {      // using closure
+    var customImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = UIColor.green
-        imageView.frame.size = CGSize(width: 100, height: 80)  // bounds
+        imageView.frame.size = CGSize(width: 100, height: 80)
         imageView.contentMode = UIViewContentMode.scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -32,11 +32,9 @@ class CustomTableCell: UITableViewCell {
     
     var titleLabel: UILabel = {
         let label = UILabel()
-        //label.backgroundColor = UIColor.yellow
         label.frame.size.height = 45
         label.font = UIFont.systemFont(ofSize: 20)
         label.textColor = UIColor.blue
-        //label.textAlignment = NSTextAlignment.center
         label.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -53,11 +51,9 @@ class CustomTableCell: UITableViewCell {
     
     var subtitleLabel: UILabel = {
         let label = UILabel()
-        //label.backgroundColor = UIColor.cyan
         label.frame.size.height = 35
         label.font = UIFont.systemFont(ofSize: 14)
         label.textColor = UIColor.darkGray
-        //label.textAlignment = NSTextAlignment.center
         label.layoutMargins = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -76,10 +72,6 @@ class CustomTableCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        /*
-         super.init(coder: aDecoder)
-         commonInit()
-         */
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -113,4 +105,5 @@ class CustomTableCell: UITableViewCell {
         subtitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         subtitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
+
 }

@@ -51,9 +51,6 @@ class JustView: UIViewController {
         
         label.center = view.center
         
-        //rect1.frame.origin.x = 0
-        //rect1.frame.origin.y = 0
-
         rect2.frame.origin.x = view.frame.width - rect2.bounds.width
         rect2.frame.origin.y = view.frame.height - rect2.bounds.height
         

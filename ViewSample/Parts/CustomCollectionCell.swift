@@ -14,9 +14,7 @@ class CustomCollectionCell: UICollectionViewCell {
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
-        //imageView.backgroundColor = UIColor.green
-        //imageView.image = UIImage(named: "tokyo")
-        imageView.translatesAutoresizingMaskIntoConstraints = false // 後で制約を付加するときは false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -26,14 +24,11 @@ class CustomCollectionCell: UICollectionViewCell {
         }
         set(image) {
             imageView.image = image
-            //self.setNeedsLayout()
         }
     }
     
     let label: UILabel = {
         let label = UILabel()
-        //label.backgroundColor = UIColor.yellow
-        //label.text = "Item "
         label.textAlignment = NSTextAlignment.center
         label.layoutMargins = UIEdgeInsets(top: 6, left: 2, bottom: 6, right: 2)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +41,6 @@ class CustomCollectionCell: UICollectionViewCell {
         }
         set(title) {
             label.text = title
-            //self.setNeedsLayout()
         }
     }
     
@@ -65,7 +59,6 @@ class CustomCollectionCell: UICollectionViewCell {
     // MARK: Method
     
     private func commonInit() {
-        //backgroundColor = UIColor.cyan
         
         // add subviews
         addSubview(imageView)

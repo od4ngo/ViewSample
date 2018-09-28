@@ -10,33 +10,15 @@ import UIKit
 
 class RootViewController: UITableViewController {
     
-    let dataList = ["UIView", "UITableView", "UICollectionView"]    //, "UIButton", "UIDatePicker", "UIPageControl", "UISegmentedControl", "UISlider", "UIStepper", "UISwitch", "UITextField", "UIProgressView", "UIActivityIndicatorView"]
-    
-    /*
-    let dataList: [(String, AnyObject)] = [ // NG: Any, AnyObject, AnyClass
-            ("UIView", JustView.self),
-            ("UITableView", TableView.self),
-            ("UICollectionView", CollectionView.self)
-    ]
-    let ref = dataList[indexPath.row].1
-    let viewController = ref.init() // AnyObject型ではまとめて .init() できない
-    */
+    let dataList = ["UIView", "UITableView", "UICollectionView"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "ViewSample"
-        self.viewRespectsSystemMinimumLayoutMargins = false // doesnt work
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
-    
-    /*
-    override func viewDidAppear(_ animated: Bool) {
-        // Needed after custome transition
-        navigationController?.delegate = nil;
-    }
-    */
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -75,4 +57,3 @@ class RootViewController: UITableViewController {
     }
 
 }
-
