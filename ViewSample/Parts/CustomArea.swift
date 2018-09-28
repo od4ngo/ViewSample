@@ -28,18 +28,7 @@ class CustomArea: UIView {
     
     required init?(coder aDecoder: NSCoder) {   // to init from IB, called first
         fatalError("init(coder:) has not been implemented")
-        
-        /*
-        super.init(coder: aDecoder)
-        self.commonInit()
-        */
     }
-    
-    /*
-    override func awakeFromNib() {  // to init from IB, called second
-        super.awakeFromNib()
-    }
-    */
     
     required override init(frame: CGRect) {     // to init from code
         super.init(frame: frame)
@@ -52,7 +41,7 @@ class CustomArea: UIView {
     private func commonInit() {
         
         self.bounds.size.height = 80
-        self.backgroundColor = UIColor.cyan     // this doesnt work because no width?
+        self.backgroundColor = UIColor.cyan
         
         // add subview
         self.addSubview(titleLabel)
@@ -67,7 +56,6 @@ class CustomArea: UIView {
     private func createLabel() -> UILabel {
         
         let label = UILabel(frame: CGRect())
-        //label.text = "Label"
         label.textColor = UIColor.black
         
         return label
